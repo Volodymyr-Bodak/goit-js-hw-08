@@ -9,7 +9,6 @@ if (JSON.parse(localStorage.getItem("feedback-form-state"))) {
 
 form.addEventListener('input', throttle(infoKeep, 500));
 
-
 function infoKeep(event) {
   const { email, message } = form.elements;
 
@@ -17,21 +16,15 @@ function infoKeep(event) {
     email: email.value,
     message: message.value
   };
-
   localStorage.setItem("feedback-form-state", JSON.stringify(data));
-
-  
-  
-  
-
 }
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();
-  
-  localStorage.clear();
   const formData = JSON.parse(localStorage.getItem('feedback-form-state'));
   console.log(formData);
+  localStorage.removeItem("feedback-form-state");
+  
 
   form.reset();
 });
